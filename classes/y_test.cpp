@@ -49,7 +49,7 @@ int main()
      * only one play may be made for each category
      */
 
-    while( (*my_yahtzee).my_numplays < 13 )
+    while( (*my_yahtzee).my_numplays <= 12 )
     {
       static int roll_count = 0;
       /* print options to user 
@@ -106,6 +106,9 @@ int main()
           }
           /* print updated score pad */
           (*my_yahtzee).my_scorepad.printScorePad();
+          /* print number of plays made */
+          cout << "Number of plays made: " << (*my_yahtzee).my_numplays
+                << endl;
         }  
         /* reset roll count */
         roll_count = 0;   

@@ -241,7 +241,7 @@ int Yahtzee::tryPlay( string *& puser_input )
       /* not a valid score */
     }
   }
-  /* update played moves */
-  this->my_played[ input ] = 1;
+  /* update played */
+  this->my_played[ input-1 ] = 1;
   this->my_numplays++;
 }
