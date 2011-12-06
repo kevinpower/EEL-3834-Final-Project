@@ -105,3 +105,17 @@ int ScorePad::calculateTotalScore( )
   return total;
 }
 
+/* print score pad */
+void ScorePad::printScorePad( )
+{
+  /* iterate over all YahtzeePlays, printing their name and current score */
+  cout << endl << "---------- Score Pad ----------";
+  cout << endl << "| Move - Score                 |";
+  cout << endl << "-------------------------------";
+  for( int i = 0; i < NUMPLAYS; i++ )
+  {
+    cout << endl << "| " << i+1 << ". " << (this->my_yahtzee_play[i].
+    getName()) << " - " << (this->my_yahtzee_play[i].getScore());
+  }
+  cout << endl << "-------------------------------" << endl;
+}

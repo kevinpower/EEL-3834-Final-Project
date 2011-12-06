@@ -12,7 +12,6 @@ class Die
   public:
     Die( );           // empty constructor
     Die( int value ); // constructor
-    //void setRandSeed( int seed );
     void rollDie( );    
     void rollDie( int mod );   
     void setValue( int value );

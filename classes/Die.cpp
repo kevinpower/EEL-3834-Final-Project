@@ -22,12 +22,6 @@ Die::Die( int value )
   setValue( value );
 }
 
-/* set rand seed */
-//void Die::setRandSeed( int seed ) 
-//{
-//  srand( seed );
-//}
-
 /* die roll */
 void Die::rollDie( )
 {
@@ -38,7 +32,7 @@ void Die::rollDie( )
 void Die::rollDie( int mod ) 
 {
   /* default mod 6 -> number between 0 and 5; add 1 -> number between 1 and 6 */
-  this->value = ( ( rand() % mod ) + 1 );   
+  this->value = ( ( rand() % mod ) + 1 );  
 }
 
 /* set value */

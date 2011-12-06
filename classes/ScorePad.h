@@ -24,8 +24,9 @@ class ScorePad : public YahtzeePlay
     int getScore( int index );
     void setScore( int index, int score );
     void resetScores( );
-    void playRoll( Dice*& pmy_dice ); // ---- WRITE THIS USING isdigit (cctype)
+    //void playRoll( Dice*& pmy_dice ); // ---- WRITE THIS USING isdigit (cctype)
     int calculateTotalScore( );
+    void printScorePad( );
     
 };
 #endif
