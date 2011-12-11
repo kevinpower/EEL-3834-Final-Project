@@ -114,8 +114,17 @@ void ScorePad::printScorePad( )
   cout << endl << "-------------------------------";
   for( int i = 0; i < NUMPLAYS; i++ )
   {
-    cout << endl << "| " << i+1 << ". " << (this->my_yahtzee_play[i].
-    getName()) << " - " << (this->my_yahtzee_play[i].getScore());
+		if( this->played[i] == 1 )
+		{
+			cout << endl << "|*" << i+1 << ". " << (this->my_yahtzee_play[i].
+    		getName()) << " - " << (this->my_yahtzee_play[i].getScore());
+		}
+		else
+		{
+    	cout << endl << "| " << i+1 << ". " << (this->my_yahtzee_play[i].
+    		getName()) << " - " << (this->my_yahtzee_play[i].getScore());
+		}
   }
   cout << endl << "-------------------------------" << endl;
+	cout << "(*) Indicates a played move. " << endl;
 }

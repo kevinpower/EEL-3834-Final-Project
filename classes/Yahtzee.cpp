@@ -3,17 +3,20 @@
 
 using namespace std;
 
-#include <iostream> // TEST: for cout, endl
-#include <ctime>    // TEST: for time(0)
-#include <cstdlib>  // TEST: for srand(), rand()
-#include <string>   // TEST: for YahtzeePlay strings (names)
-#include <cctype>   // TEST: for isalpha
-#include "Die.cpp"  // TEST: for class Die function calls
-#include "Dice.cpp" // TEST: for class Dice function calls
-#include "YahtzeePlay.cpp" // TEST: for class YahtzeePlay
-#include "ScorePad.cpp" // TEST: for class ScorePad
-#include "GameMenu.cpp" // TEST: for class GameMenu
-#include "Yahtzee.h"  // TEST: for class Yahtzee
+#include <iostream> // for cout, endl, file io
+#include <ctime>    // for time(0)
+#include <cstdlib>  // for srand(), rand()
+#include <string>   // for YahtzeePlay strings (names)
+#include <sstream>  // for conversion from string types
+#include <cctype>   // for isalpha
+#include <vector> 	// for vector operations
+#include <fstream>	// for file io
+#include "Die.cpp"  // for class Die function calls
+#include "Dice.cpp" // for class Dice function calls
+#include "YahtzeePlay.cpp" // for class YahtzeePlay
+#include "ScorePad.cpp" // for class ScorePad
+#include "GameMenu.cpp" // for class GameMenu
+#include "Yahtzee.h"  // for class Yahtzee
 
 #define NUMDICE 5
 #define NUMPLAYS 13
@@ -132,7 +135,65 @@ int Yahtzee::checkSelectionMainMenu( string *& puser_input )
     /* load game */
     
     /* NOT IMPLEMENTED YET */
-    cout << endl << "Loading Game.." << endl;    
+    cout << endl << "Loading Game.." << endl;
+		/* assume file to load is in same directory and named "yahtzee_save.txt"
+		/* file should be in the format:
+		 * [yahtzee_save.txt]
+		 * playscore;if_played 
+     * ...
+		 * ...
+		 * [repeated 13 times]
+		 * ...
+		 * total_number_of_plays_made
+		 * [end file]
+		 */
+    
+		/* create game elements */
+		newYahtzeeGame();
+		/* open file */
+		ifstream my_file;
+		my_file.open("yahtzee_save.txt");
+		if( my_file.fail() )
+		{
+			return 0;
+		}
+		
+		/* read in data elements and set the appropriately 
+		 * first iterate over number of plays; eac line is the respective score 
+		 * and if that score has been played 
+		 */
+		
+		string s;
+		int n;
+		for( int i = 0; i < NUMPLAYS; i++ )
+		{
+			/* read in first data element */
+			getline( my_file, s, ';');
+			/* convert string to integer */
+			stringstream ss( s );
+			ss >> n;
+			/* save value into score pad index */
+			(this->my_scorepad).setScore( i, n);
+			/* read in if_played */
+			getline( my_file, s, '\n' );
+			/* convert string to integer */
+			stringstream sss( s );
+			sss >> n;
+			/* save in my_played */
+			this->my_played[ i ] = n;
+			if( n == 1)
+			{
+				(this->my_scorepad).setPlayed( i );
+			}
+		}			
+		/* grab last piece of data - number of plays made */
+		getline( my_file, s );
+		/* convert string to integer */
+		stringstream ss( s );
+		ss >> n;
+		/* save number of plays made */
+		this->my_numplays = n;
+
     return 1;
   }
   else if ( *puser_input == "x" || *puser_input == "X" )
@@ -155,7 +216,7 @@ int Yahtzee::tryPlay( string *& puser_input )
   /* convert user input into integer */
   int input = atoi( (*puser_input).c_str() );
   /* need to make sure play was not already played */
-  if( this->my_played[ input ] == 1 )
+  if( this->my_played[ input-1 ] == 1 )
   {
     /* play was already made */
     cout << endl << "Play already made. Please make a new selection.";
@@ -244,4 +305,44 @@ int Yahtzee::tryPlay( string *& puser_input )
   /* update played */
   this->my_played[ input-1 ] = 1;
   this->my_numplays++;
+	(this->my_scorepad).setPlayed( input -1 );
+}
+
+/* save game */
+int Yahtzee::saveGame( )
+{
+	/* create output file stream */
+	ofstream my_file;
+	/* try opening/creating the file */
+	my_file.open("yahtzee_save.txt");
+	/* check if file opened correctly */
+	if( my_file.fail() )
+	{
+		return 1;
+	}
+	/* start writing the data into the file */
+	/* need to save:
+	 * 	- score pad values
+   * 	- which playes have been made
+	 *	- the number of plays made
+	 */
+
+	/* iterate through the score pad, saving the scores to the file 
+	 * also grab if the play has been made 
+	 * delimiter is ";"
+	 */
+	
+	for( int i = 0; i < NUMPLAYS; i++ )
+	{
+		my_file << (this->my_scorepad).getScore( i );
+		my_file << ";";
+		my_file << this->my_played[ i ];
+		my_file << "\n";
+	}
+	/* last thing to save is the total number of plays made */
+	my_file << this->my_numplays;
+	
+	/* finished saving data to file */
+	my_file.close();
+	return 0;
 }

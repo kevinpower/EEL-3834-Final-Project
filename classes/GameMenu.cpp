@@ -14,6 +14,8 @@ GameMenu::GameMenu( )
 /* print yahtzee splash */
 void GameMenu::printSplash( )
 {
+	cout << endl << endl << endl << endl << endl << endl << endl << endl;
+	cout << endl << endl << endl << endl << endl << endl << endl << endl;
   cout << endl << "\\----------------------------------------\\";
   cout << endl << "-  __    __    _     _                   *";
   cout << endl << "-  \\ \\  / /   | |   | |                  *";
@@ -22,7 +24,7 @@ void GameMenu::printSplash( )
   cout << endl << "-    | | (_|  | | | | |_ / /  __/  __/   *";
   cout << endl << "-    \\_/\\__,_ |_| |_|\\__/___\\___|\\___|   *";
   cout << endl << "-                                        *";
-  cout << endl << "-                  v 0.4                 *";   
+  cout << endl << "-                  v 0.6                 *";   
   cout << endl << "\\----------------------------------------\\"; 
   cout << endl << endl;
 }
@@ -32,7 +34,7 @@ void GameMenu::printMainMenu( )
 {
   cout << endl;
   cout << "(n) - New Game" << endl;
-  cout << "(l) - Load Game - NOTWORKING" << endl;
+  cout << "(l) - Load Game" << endl;
   cout << "(x) - Exit" << endl;
 }
 
@@ -42,7 +44,8 @@ void GameMenu::printSubMenu( )
   cout << endl;
   cout << "(r) - Roll Dice" << endl;
   cout << "(p) - Play Dice" << endl;
-  cout << "(c) - Current Score" << endl;
+  cout << "(c) - Current Score and Score Card" << endl;
+	cout << "(s) - save game" << endl;
 }
 
 /* truncate user input */
@@ -58,3 +61,8 @@ void GameMenu::truncateUserInput( string*& puser_input )
   }
 }
 
+/* print dashed line */
+void GameMenu::printDashedLine( )
+{
+	cout << "------------------------------------------" << endl;
+}

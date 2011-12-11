@@ -13,7 +13,6 @@ class GameMenu
     void printMainMenu( );
     void printSubMenu( );
     void truncateUserInput( string*& puser_input );
-    
-
+		void printDashedLine( );
 };
 #endif

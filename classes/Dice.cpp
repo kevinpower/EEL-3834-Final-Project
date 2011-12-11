@@ -27,6 +27,16 @@ void Dice::putDie( Die the_die, int index )
   this->my_dice[ index ] = the_die;
 }
 
+/* roll dice */
+void Dice::rollDice( )
+{
+	/* roll all dice */
+	for( int i = 0; i < NUMDICE; i++ )
+	{
+		this->my_dice[i].rollDie();
+	}
+}
+
 /* roll dice */   
 void Dice::rollDice( int*& pindex ) 
 {
@@ -81,7 +91,8 @@ void Dice::askRollDice( )
     /* ask which die to roll */
     for( int i = 0; i < NUMDICE; i++ )
     {
-      cout << "Roll die #" << i+1 << " ? (y/n): ";
+      cout << "Roll die #" << i+1 << "? [" << this->my_dice[i].getValue()
+				<< "] (y/n): ";
       getline( cin, user_input );
       if( (*puser_input).size() > 0 )
       {

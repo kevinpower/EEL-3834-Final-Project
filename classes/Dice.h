@@ -13,6 +13,7 @@ class Dice : public Die
     Dice( );    // empty constructor
     Die getDie( int die_number );
     void putDie( Die the_die, int index );
+		void rollDice( );
     void rollDice( int*& pindex );
     void askRollDice( );
     void resetDice( );

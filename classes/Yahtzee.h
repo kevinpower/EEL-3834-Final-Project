@@ -21,6 +21,7 @@ class Yahtzee
     void getUserInputInt( string*& puser_input ); 
     int checkSelectionMainMenu( string *& puser_input );
     int tryPlay( string *& puser_input );
+		int saveGame( );
 
 };
 #endif
