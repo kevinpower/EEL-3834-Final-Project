@@ -24,7 +24,7 @@ void GameMenu::printSplash( )
   cout << endl << "-    | | (_|  | | | | |_ / /  __/  __/   *";
   cout << endl << "-    \\_/\\__,_ |_| |_|\\__/___\\___|\\___|   *";
   cout << endl << "-                                        *";
-  cout << endl << "-                  v 0.6                 *";   
+  cout << endl << "-                  v 0.71                *";   
   cout << endl << "\\----------------------------------------\\"; 
   cout << endl << endl;
 }
