@@ -134,7 +134,6 @@ int Yahtzee::checkSelectionMainMenu( string *& puser_input )
   {
     /* load game */
     
-    /* NOT IMPLEMENTED YET */
     cout << endl << "Loading Game.." << endl;
 		/* assume file to load is in same directory and named "yahtzee_save.txt"
 		/* file should be in the format:

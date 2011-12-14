@@ -33,8 +33,8 @@ void GameMenu::printSplash( )
 void GameMenu::printMainMenu( )
 {
   cout << endl;
-  cout << "(n) - New Game" << endl;
-  cout << "(l) - Load Game" << endl;
+  cout << "(n) - New Game/Multiplayter Game" << endl;
+  cout << "(l) - Load Game (Single Player)" << endl;
   cout << "(x) - Exit" << endl;
 }
 
@@ -45,7 +45,8 @@ void GameMenu::printSubMenu( )
   cout << "(r) - Roll Dice" << endl;
   cout << "(p) - Play Dice" << endl;
   cout << "(c) - Current Score and Score Card" << endl;
-	cout << "(s) - save game" << endl;
+	cout << "(l) - Load Game" << endl;
+	cout << "(s) - Save Game" << endl;
 }
 
 /* truncate user input */
